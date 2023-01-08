@@ -18,7 +18,22 @@
         "tsConfig": "apps/assessment-test/tsconfig.app.json",
         "assets": [
           "apps/assessment-test/src/favicon.ico",
-          "apps/assessment-test/src/assets"
+          "apps/assessment-test/src/assets",
+          {
+            "input": "libs/shared/assets/src/images",
+            "glob": "**/*",
+            "output": "assets/images"
+          },
+          {
+            "input": "libs/shared/assets/src/fonts",
+            "glob": "**/*",
+            "output": "assets/fonts"
+          },
+          {
+            "input": "libs/shared/assets/src/svg",
+            "glob": "**/*",
+            "output": "assets/svg"
+          }
         ],
         "styles": ["apps/assessment-test/src/styles.css"],
         "scripts": [],

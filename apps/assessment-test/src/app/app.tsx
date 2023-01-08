@@ -11,7 +11,6 @@ export function App() {
     <>
       <NxWelcome title="assessment-test" />
       <div />
-
       {/* START: routes */}
       {/* These routes and navigation have been generated for you */}
       {/* Feel free to move and update them to fit your needs */}
