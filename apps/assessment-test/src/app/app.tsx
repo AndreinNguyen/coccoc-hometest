@@ -4,7 +4,7 @@ import NxWelcome from "./nx-welcome";
 
 import { Route, Routes, Link } from "react-router-dom";
 
-import { Web } from "@./web";
+import { Web } from "@coccoc-hometest/web";
 
 export function App() {
   return (

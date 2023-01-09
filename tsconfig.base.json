@@ -15,9 +15,11 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@./shared/assets": ["libs/shared/assets/src/index.ts"],
-      "@./shared/components": ["libs/shared/components/src/index.ts"],
-      "@./web": ["libs/web/src/index.ts"]
+      "@coccoc-hometest/shared/assets": ["libs/shared/assets/src/index.ts"],
+      "@coccoc-hometest/shared/components": [
+        "libs/shared/components/src/index.ts"
+      ],
+      "@coccoc-hometest/web": ["libs/web/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

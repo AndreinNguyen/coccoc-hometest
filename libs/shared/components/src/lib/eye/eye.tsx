@@ -1,12 +1,20 @@
-/* eslint-disable-next-line */
-export interface EyeProps {}
+import { EyeSvg } from "@coccoc-hometest/shared/assets";
+import { Box, IconButton, SvgIcon } from "@mui/material";
+
+export interface EyeProps {
+  onClick: () => void;
+}
 
 export function Eye(props: EyeProps) {
+  const { onClick, ...rest } = props;
+
   return (
-    <div>
-      <h1>Welcome to Eye!</h1>
-    </div>
+    <Box sx={{ marginLeft: -1 }}>
+      <IconButton onClick={onClick}>
+        <SvgIcon {...rest} component={EyeSvg} inheritViewBox />
+      </IconButton>
+    </Box>
   );
 }
 
-export default Eye;
+export default EyeSvg;

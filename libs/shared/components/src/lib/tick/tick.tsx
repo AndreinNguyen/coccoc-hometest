@@ -1,11 +1,16 @@
+import { Box, IconButton, SvgIcon, SvgIconProps } from "@mui/material";
+import { TickSvg } from "@coccoc-hometest/shared/assets";
+
 /* eslint-disable-next-line */
-export interface TickProps {}
+export interface TickProps extends SvgIconProps {}
 
 export function Tick(props: TickProps) {
   return (
-    <div>
-      <h1>Welcome to Tick!</h1>
-    </div>
+    <Box sx={{ marginLeft: -1 }}>
+      <IconButton>
+        <SvgIcon {...props} component={TickSvg} inheritViewBox />
+      </IconButton>
+    </Box>
   );
 }
 
