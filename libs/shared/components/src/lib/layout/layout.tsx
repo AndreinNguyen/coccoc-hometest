@@ -1,11 +1,19 @@
-/* eslint-disable-next-line */
-export interface LayoutProps {}
+import { Container } from "@mui/material";
+import { ReactNode } from "react";
 
-export function Layout(props: LayoutProps) {
+export interface LayoutProps {
+  children: ReactNode;
+}
+
+export function Layout({ children }: LayoutProps) {
   return (
-    <div>
-      <h1>Welcome to Layout!</h1>
-    </div>
+    <>
+      <header></header>
+      <main>
+        <Container>{children}</Container>
+      </main>
+      <footer></footer>
+    </>
   );
 }
 

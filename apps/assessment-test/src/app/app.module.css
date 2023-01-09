@@ -1,1 +1,17 @@
 /* Your styles goes here. */
+
+@font-face {
+  font-family: "Segoeui";
+  src: url("/assets/fonts/segoeui.ttf") format("ttf");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Seguisb";
+  src: url("/assets/fonts/seguisb.ttf") format("ttf");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}

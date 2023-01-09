@@ -1,11 +1,15 @@
-/* eslint-disable-next-line */
-export interface ProviderProps {}
+import { Layout, Theme } from "@coccoc-hometest/shared/components";
+import { ReactNode } from "react";
 
-export function Provider(props: ProviderProps) {
+export interface ProviderProps {
+  children: ReactNode;
+}
+
+export function Provider({ children }: ProviderProps) {
   return (
-    <div>
-      <h1>Welcome to Provider!</h1>
-    </div>
+    <Theme>
+      <Layout>{children}</Layout>
+    </Theme>
   );
 }
 

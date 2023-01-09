@@ -154,6 +154,7 @@ export function LoginPage(props: LoginPageProps) {
             >
               <Box display={"flex"} alignItems="center">
                 <Checkbox
+                  fontSize="small"
                   isChecked={isRememberMe}
                   setIsChecked={setIsRememberMe}
                 />
