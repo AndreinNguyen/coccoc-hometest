@@ -15,12 +15,12 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@coccoc-hometest/shared/services": ["libs/shared/services/src/index.ts"],
       "@coccoc-hometest/shared/assets": ["libs/shared/assets/src/index.ts"],
       "@coccoc-hometest/shared/components": [
         "libs/shared/components/src/index.ts"
       ],
       "@coccoc-hometest/shared/config": ["libs/shared/config/src/index.ts"],
+      "@coccoc-hometest/shared/services": ["libs/shared/services/src/index.ts"],
       "@coccoc-hometest/web": ["libs/web/src/index.ts"]
     }
   },
