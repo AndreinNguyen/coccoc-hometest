@@ -1,7 +1,7 @@
 import { EyeSvg } from "@coccoc-hometest/shared/assets";
-import { Box, IconButton, SvgIcon } from "@mui/material";
+import { Box, IconButton, SvgIcon, SvgIconProps } from "@mui/material";
 
-export interface EyeProps {
+export interface EyeProps extends SvgIconProps {
   onClick: () => void;
 }
 
