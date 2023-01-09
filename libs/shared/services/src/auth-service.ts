@@ -21,7 +21,7 @@ export class AuthService {
     return requestInstance<LoginResponse>({
       method: "POST",
       url: "/login",
-      params: { email, password },
+      data: { email, password },
     });
   }
 }

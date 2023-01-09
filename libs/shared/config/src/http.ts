@@ -1,5 +1,6 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { LOCAL_STORAGE_ITEMS } from "./constant";
+import qs from "qs";
 
 export const client = (() => {
   return axios.create({
@@ -23,6 +24,11 @@ client.interceptors.request.use(
     return Promise.reject(error);
   }
 );
+
+client.interceptors.request.use((request) => {
+  request.data = qs.stringify(request.data);
+  return request;
+});
 
 client.interceptors.response.use(
   (response) => {

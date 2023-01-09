@@ -67,7 +67,8 @@
       "defaultConfiguration": "development",
       "options": {
         "buildTarget": "assessment-test:build",
-        "hmr": true
+        "hmr": true,
+        "proxyConfig": "apps/assessment-test/proxy.conf.json"
       },
       "configurations": {
         "development": {
