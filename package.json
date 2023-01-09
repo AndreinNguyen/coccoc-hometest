@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
+    "storybook": "npx nx run-many --target=storybook",
     "dev": "npx nx run-many --target=serve",
     "build": "npx nx run-many --target=build",
     "start": "npx nx run-many --target=serve --configuration production",
