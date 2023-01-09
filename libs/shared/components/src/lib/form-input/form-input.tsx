@@ -26,7 +26,7 @@ export function FormInput<T extends FieldValues>(props: FormInputProps<T>) {
       rules={rules}
       {...rest}
       render={({
-        field: { onChange, value },
+        field: { onChange, value, onBlur, ...rest },
         fieldState: { error },
         formState,
       }) => (
@@ -47,7 +47,9 @@ export function FormInput<T extends FieldValues>(props: FormInputProps<T>) {
             ) : null
           }
           error={!!error}
+          {...rest}
           onChange={onChange}
+          onBlur={onBlur}
           value={value}
           fullWidth
           type={type}

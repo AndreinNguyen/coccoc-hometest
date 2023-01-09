@@ -48,8 +48,13 @@ export function LoginPage(props: LoginPageProps) {
 
   const navigate = useNavigate();
 
-  const { handleSubmit, control } = useForm({
+  const {
+    handleSubmit,
+    control,
+    formState: { isValid },
+  } = useForm({
     defaultValues,
+    mode: "all",
   });
 
   const onSubmit = async (data: IForm) => {
@@ -61,7 +66,6 @@ export function LoginPage(props: LoginPageProps) {
         setLocalStorage(LOCAL_STORAGE_ITEMS.password, data.password);
       }
       const res = await AuthService.login(data.email, data.password);
-      console.log("%clogin-form.tsx line:62 res", "color: #26bfa5;", res);
 
       setLocalStorage(LOCAL_STORAGE_ITEMS.accessToken, res.data.accessToken);
       setLocalStorage(LOCAL_STORAGE_ITEMS.name, res.data.name);
@@ -139,7 +143,7 @@ export function LoginPage(props: LoginPageProps) {
                 InputProps={{
                   endAdornment: (
                     <Eye
-                      color={showPassword ? "secondary" : "inherit"}
+                      color={showPassword ? "secondary" : "disabled"}
                       onClick={() => setShowPassword(!showPassword)}
                     />
                   ),
@@ -182,11 +186,12 @@ export function LoginPage(props: LoginPageProps) {
 
             {!isProcessing ? (
               <Button
-                sx={{ width: "30px" }}
+                sx={{ width: "30px", fontWeight: 600 }}
                 size="small"
                 color="secondary"
                 variant="contained"
                 type="submit"
+                disabled={!isValid}
               >
                 Login
               </Button>

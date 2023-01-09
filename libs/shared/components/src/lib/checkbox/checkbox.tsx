@@ -19,7 +19,12 @@ export function Checkbox(props: CheckboxProps) {
     <Box sx={{ marginLeft: -1 }}>
       <IconButton onClick={onChange}>
         {!isChecked ? (
-          <SvgIcon component={CheckboxBlankSvg} inheritViewBox {...rest} />
+          <SvgIcon
+            color="disabled"
+            component={CheckboxBlankSvg}
+            inheritViewBox
+            {...rest}
+          />
         ) : (
           <SvgIcon
             color="secondary"
