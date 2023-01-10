@@ -19,6 +19,7 @@ import {
   FormControl,
   FormLabel,
   Button,
+  Fade,
 } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -169,7 +170,7 @@ export function LoginPage(props: LoginPageProps) {
               </Link>
             </Box>
 
-            {error && (
+            <Fade in={!!error} unmountOnExit>
               <Box ml={1} mt={-1} display={"flex"} alignItems="center">
                 <CautionCircle color="error" />
                 <Typography
@@ -182,7 +183,7 @@ export function LoginPage(props: LoginPageProps) {
                   {error}
                 </Typography>
               </Box>
-            )}
+            </Fade>
 
             {!isProcessing ? (
               <Button
