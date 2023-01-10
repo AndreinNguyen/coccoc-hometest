@@ -19,7 +19,7 @@ import {
   FormControl,
   FormLabel,
   Button,
-  Fade,
+  LinearProgress,
 } from "@mui/material";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -53,6 +53,8 @@ export function LoginPage(props: LoginPageProps) {
     handleSubmit,
     control,
     formState: { isValid },
+    setFocus,
+    resetField,
   } = useForm({
     defaultValues,
     mode: "all",
@@ -74,6 +76,10 @@ export function LoginPage(props: LoginPageProps) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       setError(error[0].msg);
+      resetField("password", {
+        defaultValue: "",
+      });
+      setFocus("password");
     } finally {
       setIsProcessing(false);
     }
@@ -93,12 +99,31 @@ export function LoginPage(props: LoginPageProps) {
           elevation={24}
           sx={{
             width: 400,
+            position: "relative",
+            overflow: "hidden",
             padding: 2,
             display: "flex",
             flexDirection: "column",
             gap: 2,
+            opacity: isProcessing ? 0.8 : 1,
+            pointerEvents: isProcessing ? "none" : "initial",
           }}
         >
+          {isProcessing && (
+            <Box
+              sx={{
+                width: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                "& .MuiLinearProgress-bar": {
+                  animationDuration: "2s",
+                },
+              }}
+            >
+              <LinearProgress color="secondary" />
+            </Box>
+          )}
           <Typography variant="h4" fontWeight={600}>
             Login
           </Typography>
@@ -169,8 +194,7 @@ export function LoginPage(props: LoginPageProps) {
                 Forgot password?
               </Link>
             </Box>
-
-            <Fade in={!!error} unmountOnExit>
+            {!!error && (
               <Box ml={1} mt={-1} display={"flex"} alignItems="center">
                 <CautionCircle color="error" />
                 <Typography
@@ -183,8 +207,7 @@ export function LoginPage(props: LoginPageProps) {
                   {error}
                 </Typography>
               </Box>
-            </Fade>
-
+            )}
             {!isProcessing ? (
               <Button
                 sx={{ width: "30px", fontWeight: 600 }}

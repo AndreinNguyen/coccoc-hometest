@@ -16,7 +16,6 @@ const theme = createTheme({
     fontSize: 12,
     h4: {
       fontSize: "1.5rem",
-      fontFamily: "Roboto, sans-serif",
     },
   },
   components: {
