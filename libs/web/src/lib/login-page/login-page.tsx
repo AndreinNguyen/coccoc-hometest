@@ -4,11 +4,6 @@ import {
   CautionCircle,
   Checkbox,
 } from "@coccoc-hometest/shared/components";
-import {
-  getItemLocalStorage,
-  LOCAL_STORAGE_ITEMS,
-  setLocalStorage,
-} from "@coccoc-hometest/shared/config";
 import { AuthService } from "@coccoc-hometest/shared/services";
 import {
   Box,
@@ -22,6 +17,7 @@ import {
   LinearProgress,
 } from "@mui/material";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 
@@ -33,14 +29,6 @@ interface IForm {
   password: string;
 }
 
-const email = getItemLocalStorage(LOCAL_STORAGE_ITEMS.email) ?? "";
-const password = getItemLocalStorage(LOCAL_STORAGE_ITEMS.password) ?? "";
-
-const defaultValues: IForm = {
-  email,
-  password,
-};
-
 export function LoginPage(props: LoginPageProps) {
   const [isRememberMe, setIsRememberMe] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
@@ -48,6 +36,12 @@ export function LoginPage(props: LoginPageProps) {
   const [error, setError] = useState("");
 
   const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies([
+    "email",
+    "password",
+    "name",
+    "accessToken",
+  ]);
 
   const {
     handleSubmit,
@@ -56,7 +50,10 @@ export function LoginPage(props: LoginPageProps) {
     setFocus,
     resetField,
   } = useForm({
-    defaultValues,
+    defaultValues: {
+      email: cookies.email,
+      password: cookies.password,
+    },
     mode: "all",
   });
 
@@ -65,13 +62,13 @@ export function LoginPage(props: LoginPageProps) {
       setIsProcessing(true);
       setError("");
       if (isRememberMe) {
-        setLocalStorage(LOCAL_STORAGE_ITEMS.email, data.email);
-        setLocalStorage(LOCAL_STORAGE_ITEMS.password, data.password);
+        setCookie("email", data.email);
+        setCookie("password", data.password);
       }
       const res = await AuthService.login(data.email, data.password);
+      setCookie("name", res.data.name);
+      setCookie("accessToken", res.data.accessToken);
 
-      setLocalStorage(LOCAL_STORAGE_ITEMS.accessToken, res.data.accessToken);
-      setLocalStorage(LOCAL_STORAGE_ITEMS.name, res.data.name);
       navigate("/home");
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {

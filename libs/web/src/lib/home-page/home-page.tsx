@@ -1,25 +1,12 @@
 import { Tick } from "@coccoc-hometest/shared/components";
-import {
-  getItemLocalStorage,
-  LOCAL_STORAGE_ITEMS,
-} from "@coccoc-hometest/shared/config";
 import { Box, Typography } from "@mui/material";
-import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
 
 /* eslint-disable-next-line */
 export interface HomePageProps {}
 
 export function HomePage(props: HomePageProps) {
-  const [name, setName] = useState("");
-
-  useEffect(() => {
-    const _name = getItemLocalStorage(LOCAL_STORAGE_ITEMS.name) ?? "";
-    setName(_name);
-
-    return () => {
-      setName("");
-    };
-  }, []);
+  const [cookies] = useCookies(["name"]);
 
   return (
     <Box
@@ -37,7 +24,9 @@ export function HomePage(props: HomePageProps) {
         alignItems="center"
       >
         <Tick color="secondary" />
-        <Typography>Welcome {name}, you have logged in successfully</Typography>
+        <Typography>
+          Welcome {cookies?.name}, you have logged in successfully
+        </Typography>
       </Box>
     </Box>
   );
